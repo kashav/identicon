@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>what's that identicon</title>
+    <style>
+      * {
+        font-family: monospace;
+      }
+      body {
+        padding: 5px;
+        max-width: 500px;
+      }
+      #container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        background-color: rgb(240, 240, 240);
+        width: 250px;
+        height: 250px;
+        padding: 25px;
+        border-radius: 5px;
+      }
+      .box {
+        display: inline-grid;
+        cursor: pointer;
+      }
+      .box.on {
+        background-color: #c9627c;
+      }
+      .box.off {
+        background-color: transparent;
+      }
+      #output {
+        border: 1px dotted black;
+        width: 300px;
+        height: 200px;
+        overflow-y: scroll;
+        padding: 5px;
+        margin: 12px 0;
+      }
+      #output a {
+        display: block;
+      }
+      ol {
+        padding-left: 1.7em;
+      }
+    </style>
+  </head>
+  <body>
+    <content>
+      <div id="container"></div>
+      <button>GO</button>
+      <a href="#" id="png-url"></a>
+      <div id="output">click on pixels to toggle them and then hit GO</div>
+      <p><a href="https://github.com/kashav/identicon">Source code</a>.</p>
+    </content>
+    <script src="script.js"></script>
+  </body>
+</html>
