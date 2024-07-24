@@ -1,9 +1,9 @@
 self.importScripts(
-  "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js"
+  "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js",
 );
 
 self.importScripts(
-  "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.min.js"
+  "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.min.js",
 );
 
 // adapted from https://stackoverflow.com/a/29433028
