@@ -65,21 +65,34 @@ function getBitRepr() {
   return repr;
 }
 
+function setAnchorWithId(id, href, innerText) {
+  const anchor = document.getElementById(id);
+  anchor.setAttribute("href", href);
+  anchor.innerText = innerText;
+}
+
 async function handleAnchorClick() {
   try {
     const url = `https://api.github.com/user/${this.dataset.id}`;
     const resp = await fetch(url);
     const json = await resp.json();
 
-    if (!json || !json.login) throw new Error("no login");
+    if (!json || !json.login) {
+      throw new Error("failed to retrieve login from api");
+    }
 
-    const anchor = document.getElementById("png-url");
+    const accountUrl = `github.com/${json.login}`;
+    setAnchorWithId("account-url", "https://" + accountUrl, accountUrl);
 
-    const pngUrl = `github.com/identicons/${json.login}.png`
-    anchor.setAttribute("href", "https://" + pngUrl);
-    anchor.innerText = pngUrl;
+    const pngHref = `https://github.com/identicons/${json.login}.png`;
+    const pngInnerText = `identicon ${this.dataset.id}`;
+    setAnchorWithId("png-url", pngHref, pngInnerText);
+
+    const pngUrlWrapper = document.getElementById("png-url-wrapper");
+    pngUrlWrapper.style.display = "inline";
   } catch (error) {
     console.error(error);
+    alert(error);
   }
 }
 
@@ -90,7 +103,7 @@ function startWorker() {
 
   const button = document.querySelector("button");
   button.onclick = stopWorker;
-  button.innerText = "STOP";
+  button.innerText = "Stop";
 
   if (worker) worker.terminate();
 
@@ -113,7 +126,7 @@ function stopWorker() {
 
   const button = document.querySelector("button");
   button.onclick = startWorker;
-  button.innerText = "GO";
+  button.innerText = "Go";
 }
 
 window.onload = function () {
